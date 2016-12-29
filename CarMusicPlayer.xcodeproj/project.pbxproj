@@ -14,6 +14,9 @@
 		1D33C3C11DAC7DD600B25807 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D33C3BF1DAC7DD600B25807 /* LaunchScreen.storyboard */; };
 		1D33C3CC1DAC7DD700B25807 /* CarMusicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33C3CB1DAC7DD700B25807 /* CarMusicPlayerTests.swift */; };
 		1D33C3D71DAC7DD700B25807 /* CarMusicPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33C3D61DAC7DD700B25807 /* CarMusicPlayerUITests.swift */; };
+		1D33C3E61DAC7DFB00B25807 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D33C3E51DAC7DFB00B25807 /* MediaPlayer.framework */; };
+		1D33C3EA1DAC80AB00B25807 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33C3E91DAC80AB00B25807 /* UIImageColors.swift */; };
+		6DBE5D1B1E062720003BB1BA /* MusicLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE5D1A1E062720003BB1BA /* MusicLibrary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		1D33C3D21DAC7DD700B25807 /* CarMusicPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarMusicPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D33C3D61DAC7DD700B25807 /* CarMusicPlayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarMusicPlayerUITests.swift; sourceTree = "<group>"; };
 		1D33C3D81DAC7DD700B25807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D33C3E51DAC7DFB00B25807 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		1D33C3E91DAC80AB00B25807 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
+		6DBE5D1A1E062720003BB1BA /* MusicLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D33C3E61DAC7DFB00B25807 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,7 @@
 				1D33C3CA1DAC7DD700B25807 /* CarMusicPlayerTests */,
 				1D33C3D51DAC7DD700B25807 /* CarMusicPlayerUITests */,
 				1D33C3B41DAC7DD500B25807 /* Products */,
+				1D33C3E41DAC7DFB00B25807 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,7 +107,9 @@
 			children = (
 				1D33C3B61DAC7DD500B25807 /* AppDelegate.swift */,
 				1D33C3B81DAC7DD500B25807 /* ViewController.swift */,
+				6DBE5D1A1E062720003BB1BA /* MusicLibrary.swift */,
 				1D33C3BA1DAC7DD600B25807 /* Main.storyboard */,
+				1D33C3E91DAC80AB00B25807 /* UIImageColors.swift */,
 				1D33C3BD1DAC7DD600B25807 /* Assets.xcassets */,
 				1D33C3BF1DAC7DD600B25807 /* LaunchScreen.storyboard */,
 				1D33C3C21DAC7DD600B25807 /* Info.plist */,
@@ -123,6 +133,14 @@
 				1D33C3D81DAC7DD700B25807 /* Info.plist */,
 			);
 			path = CarMusicPlayerUITests;
+			sourceTree = "<group>";
+		};
+		1D33C3E41DAC7DFB00B25807 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D33C3E51DAC7DFB00B25807 /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +280,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D33C3EA1DAC80AB00B25807 /* UIImageColors.swift in Sources */,
 				1D33C3B91DAC7DD500B25807 /* ViewController.swift in Sources */,
 				1D33C3B71DAC7DD500B25807 /* AppDelegate.swift in Sources */,
+				6DBE5D1B1E062720003BB1BA /* MusicLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +534,7 @@
 				1D33C3DD1DAC7DD700B25807 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D33C3DE1DAC7DD700B25807 /* Build configuration list for PBXNativeTarget "CarMusicPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +543,7 @@
 				1D33C3E01DAC7DD700B25807 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D33C3E11DAC7DD700B25807 /* Build configuration list for PBXNativeTarget "CarMusicPlayerUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +552,7 @@
 				1D33C3E31DAC7DD700B25807 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
