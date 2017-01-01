@@ -20,9 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var artistAlbumLabel: UILabel!
     
-    let libd = MusicLibrary()
-    
-    let musicPlayer = MPMusicPlayerController()
+    let musicLibrary = MusicLibrary()
     
     let defaults = UserDefaults.standard
     var firstLaunch = true
@@ -30,32 +28,28 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.defaults.synchronize()
         firstLaunch = self.defaults.bool(forKey: "firstLaunch")
-        musicPlayer.beginGeneratingPlaybackNotifications()
+        musicLibrary.player.beginGeneratingPlaybackNotifications()
         
         
         
-        NotificationCenter.default.addObserver(self, selector:#selector(updateView), name:.MPMusicPlayerControllerNowPlayingItemDidChange, object:musicPlayer)
-        NotificationCenter.default.addObserver(self, selector:#selector(changePlayPauseButtonImage), name: .MPMusicPlayerControllerPlaybackStateDidChange, object:musicPlayer)
         
-        
-        
-        let g = libd.authorize()
-        print(g)
-        
+        NotificationCenter.default.addObserver(self, selector:#selector(updateView), name:.MPMusicPlayerControllerNowPlayingItemDidChange, object:musicLibrary.player)
+        NotificationCenter.default.addObserver(self, selector:#selector(changePlayPauseButtonImage), name: .MPMusicPlayerControllerPlaybackStateDidChange, object:musicLibrary.player)
 
+        self.updateView()
 
-        
+        if musicLibrary.player.playbackState.rawValue == 1{
+            playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
+        }
         
 }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.defaults.bool(forKey: "auth"){
-            print("JFKLSJDS:LFJFJ")
-            self.updateView()
-        }
-
+        self.updateView()
+        
+    
         
     }
     
@@ -63,12 +57,12 @@ class ViewController: UIViewController {
     
     func changePlayPauseButtonImage(){
         
-        if (playPauseButton.imageView?.image)! == #imageLiteral(resourceName: "PlayImage") && musicPlayer.playbackState.rawValue == 1{
+        if (playPauseButton.imageView?.image)! == #imageLiteral(resourceName: "PlayImage") && musicLibrary.player.playbackState.rawValue == 1{
             
-            playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: UIControlState.normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
             
         }else{
-            playPauseButton.setImage(#imageLiteral(resourceName: "PlayImage"), for: UIControlState.normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "PlayImage"), for: .normal)
             
         }
 
@@ -76,25 +70,25 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playPauseButtonPressed(_ sender: UIButton) {
-        if (musicPlayer.playbackState.rawValue == 1){
-            musicPlayer.pause()
+        if (musicLibrary.player.playbackState.rawValue == 1){
+            musicLibrary.player.pause()
         }else{
-            musicPlayer.play()
+            musicLibrary.player.play()
         }
     }
     @IBAction func skipForwardButtonPressed(_ sender: UIButton) {
         
-        musicPlayer.skipToNextItem()
-        
+        musicLibrary.player.skipToNextItem()
+
     }
     
     @IBAction func skipBackButtonPressed(_ sender: UIButton) {
-        musicPlayer.skipToPreviousItem()
+        musicLibrary.player.skipToPreviousItem()
     }
     
     func updateView(){
         
-        self.musicPlayer.nowPlayingItem?.artwork?.image(at:CGSize.init(width: 75, height: 50))?.getColors{ colors in
+        self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: 75, height: 50))?.getColors{ colors in
             UIView.animate(withDuration: 0.15, animations: {
                 self.skipBackButton.tintColor = colors.primaryColor
                 self.playPauseButton.tintColor = colors.primaryColor
@@ -103,9 +97,9 @@ class ViewController: UIViewController {
                 self.songNameLabel.textColor = colors.detailColor
                 self.view.backgroundColor = colors.backgroundColor
             }, completion: { (success) in
-                self.albumArtImageView.image = self.musicPlayer.nowPlayingItem?.artwork?.image(at:CGSize.init(width: self.albumArtImageView.frame.size.width, height: self.albumArtImageView.frame.size.height))
-                self.artistAlbumLabel.text = self.musicPlayer.nowPlayingItem?.artist
-                self.songNameLabel.text = self.musicPlayer.nowPlayingItem?.title
+                self.albumArtImageView.image = self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: self.albumArtImageView.frame.size.width, height: self.albumArtImageView.frame.size.height))
+                self.artistAlbumLabel.text = self.musicLibrary.player.nowPlayingItem?.artist
+                self.songNameLabel.text = self.musicLibrary.player.nowPlayingItem?.title
 
             })
         }
