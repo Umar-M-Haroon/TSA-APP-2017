@@ -23,22 +23,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcF-dp-q0R">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcF-dp-q0R">
+                                <rect key="frame" x="145" y="318" width="84" height="30"/>
+                                <state key="normal" title="Show Player"/>
                                 <connections>
                                     <action selector="tryAuthorizingOnButtonPress:" destination="igD-Sk-CrY" eventType="touchUpInside" id="hCt-jx-KgA"/>
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="FEh-Xa-OoR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaK-r9-WuM">
-                                <rect key="frame" x="164" y="273" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaK-r9-WuM">
+                                <rect key="frame" x="154.5" y="273" width="66" height="30"/>
+                                <state key="normal" title="Authorize"/>
+                                <connections>
+                                    <action selector="tryAuthorizingOnButtonPress:" destination="igD-Sk-CrY" eventType="touchUpInside" id="k4c-0D-Ngp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dcF-dp-q0R" firstAttribute="top" secondItem="RaK-r9-WuM" secondAttribute="bottom" constant="15" id="0yl-T1-gmW"/>
+                            <constraint firstItem="RaK-r9-WuM" firstAttribute="centerX" secondItem="5rB-q4-ePB" secondAttribute="centerX" id="4xP-s7-MoI"/>
+                            <constraint firstItem="dcF-dp-q0R" firstAttribute="centerY" secondItem="5rB-q4-ePB" secondAttribute="centerY" id="XxX-Vg-vfV"/>
+                            <constraint firstItem="dcF-dp-q0R" firstAttribute="centerX" secondItem="5rB-q4-ePB" secondAttribute="centerX" id="a67-Kh-m5o"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hwV-qW-gb3"/>
                 </viewController>
