@@ -23,8 +23,6 @@ class MusicLibrary{
         self.playlists = []
         
     }
-    
-    
     func returnPlaylists() -> Array<Any> {
         
         for var i in 0..<Int((self.playlistCollections?.count)!){
@@ -37,6 +35,7 @@ class MusicLibrary{
         return playlists
         
     }
+
     
     func authorize() -> Bool{
         let authorizationStatus = MPMediaLibrary.authorizationStatus()

@@ -16,6 +16,7 @@
 		1D33C3D71DAC7DD700B25807 /* CarMusicPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33C3D61DAC7DD700B25807 /* CarMusicPlayerUITests.swift */; };
 		1D33C3E61DAC7DFB00B25807 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D33C3E51DAC7DFB00B25807 /* MediaPlayer.framework */; };
 		1D33C3EA1DAC80AB00B25807 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D33C3E91DAC80AB00B25807 /* UIImageColors.swift */; };
+		6D6CCB151E1E066D00BF5227 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6CCB141E1E066D00BF5227 /* SetupViewController.swift */; };
 		6DBE5D1B1E062720003BB1BA /* MusicLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBE5D1A1E062720003BB1BA /* MusicLibrary.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		1D33C3D81DAC7DD700B25807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D33C3E51DAC7DFB00B25807 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		1D33C3E91DAC80AB00B25807 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
+		6D6CCB141E1E066D00BF5227 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		6DBE5D1A1E062720003BB1BA /* MusicLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 				1D33C3B81DAC7DD500B25807 /* ViewController.swift */,
 				6DBE5D1A1E062720003BB1BA /* MusicLibrary.swift */,
 				1D33C3BA1DAC7DD600B25807 /* Main.storyboard */,
+				6D6CCB141E1E066D00BF5227 /* SetupViewController.swift */,
 				1D33C3E91DAC80AB00B25807 /* UIImageColors.swift */,
 				1D33C3BD1DAC7DD600B25807 /* Assets.xcassets */,
 				1D33C3BF1DAC7DD600B25807 /* LaunchScreen.storyboard */,
@@ -284,6 +287,7 @@
 				1D33C3B91DAC7DD500B25807 /* ViewController.swift in Sources */,
 				1D33C3B71DAC7DD500B25807 /* AppDelegate.swift in Sources */,
 				6DBE5D1B1E062720003BB1BA /* MusicLibrary.swift in Sources */,
+				6D6CCB151E1E066D00BF5227 /* SetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

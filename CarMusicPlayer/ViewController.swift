@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,MPMediaPickerControllerDelegate{
 
     @IBOutlet weak var albumArtImageView: UIImageView!
     
@@ -22,12 +22,20 @@ class ViewController: UIViewController {
     
     let musicLibrary = MusicLibrary()
     
-    let defaults = UserDefaults.standard
-    var firstLaunch = true
     
+    @IBAction func testVCpresent(_ sender: UIButton) {
+        let musicPickerController = MPMediaPickerController(mediaTypes: .anyAudio)
+        musicPickerController.delegate = self
+        musicPickerController.allowsPickingMultipleItems = true
+        musicPickerController.modalPresentationStyle = .popover
+        
+        self.present(musicPickerController, animated: true, completion: nil)
+        
+        
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
-        self.defaults.synchronize()
-        firstLaunch = self.defaults.bool(forKey: "firstLaunch")
+
         musicLibrary.player.beginGeneratingPlaybackNotifications()
         
         
@@ -47,9 +55,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.updateView()
-        
-    
         
     }
     
@@ -87,7 +92,10 @@ class ViewController: UIViewController {
     }
     
     func updateView(){
-        
+        self.albumArtImageView.image = self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: self.albumArtImageView.frame.size.width, height: self.albumArtImageView.frame.size.height))
+        self.artistAlbumLabel.text = self.musicLibrary.player.nowPlayingItem?.artist
+        self.songNameLabel.text = self.musicLibrary.player.nowPlayingItem?.title
+
         self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: 75, height: 50))?.getColors{ colors in
             UIView.animate(withDuration: 0.15, animations: {
                 self.skipBackButton.tintColor = colors.primaryColor
@@ -96,19 +104,21 @@ class ViewController: UIViewController {
                 self.artistAlbumLabel.textColor = colors.secondaryColor
                 self.songNameLabel.textColor = colors.detailColor
                 self.view.backgroundColor = colors.backgroundColor
-            }, completion: { (success) in
-                self.albumArtImageView.image = self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: self.albumArtImageView.frame.size.width, height: self.albumArtImageView.frame.size.height))
-                self.artistAlbumLabel.text = self.musicLibrary.player.nowPlayingItem?.artist
-                self.songNameLabel.text = self.musicLibrary.player.nowPlayingItem?.title
-
-            })
+            }, completion: nil)
         }
-        
-        
-        
 
     }
     
-
+    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        
+        musicLibrary.player.setQueue(with: mediaItemCollection)
+//        musicLibrary.player.play()
+        self.dismiss(animated: true, completion: nil)
+    }
+    func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
 
