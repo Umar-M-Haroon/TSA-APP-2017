@@ -23,18 +23,6 @@ class MusicLibrary{
         self.playlists = []
         
     }
-    func returnPlaylists() -> Array<Any> {
-        
-        for var i in 0..<Int((self.playlistCollections?.count)!){
-            if let list:MPMediaPlaylist = self.playlistCollections?[i] as? MPMediaPlaylist{
-                let j = list.value(forProperty: MPMediaPlaylistPropertyName)
-                
-                playlists.append(j!)
-            }
-        }
-        return playlists
-        
-    }
 
     
     func authorize() -> Bool{

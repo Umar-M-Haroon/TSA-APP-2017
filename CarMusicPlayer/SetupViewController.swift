@@ -17,11 +17,9 @@ class SetupViewController: UIViewController {
     }
     
     @IBAction func tryAuthorizingOnButtonPress(_ sender: UIButton) {
-        print("pressed")
+        
         let j = MusicLibrary()
         j.authorize()
-        print(j.authorize())
-        //TODO: Make this work.
 
     }
     
