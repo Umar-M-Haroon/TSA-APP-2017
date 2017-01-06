@@ -24,10 +24,9 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
     
     
     @IBAction func testVCpresent(_ sender: UIButton) {
-        let musicPickerController = MPMediaPickerController(mediaTypes: .anyAudio)
+        let musicPickerController = MPMediaPickerController()
         musicPickerController.delegate = self
         musicPickerController.allowsPickingMultipleItems = true
-        musicPickerController.modalPresentationStyle = .popover
         
         self.present(musicPickerController, animated: true, completion: nil)
         
@@ -75,10 +74,19 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
     }
     
     @IBAction func playPauseButtonPressed(_ sender: UIButton) {
-        if (musicLibrary.player.playbackState.rawValue == 1){
-            musicLibrary.player.pause()
-        }else{
-            musicLibrary.player.play()
+        var feedback: UINotificationFeedbackGenerator? = nil
+        feedback = UINotificationFeedbackGenerator()
+        feedback?.prepare()
+        feedback?.notificationOccurred(UINotificationFeedbackType.success)
+        feedback = nil
+        
+        DispatchQueue.main.async{ // 2
+        
+            if (self.musicLibrary.player.playbackState.rawValue == 1){
+                self.musicLibrary.player.pause()
+            }else{
+                self.musicLibrary.player.play()
+            }
         }
     }
     @IBAction func skipForwardButtonPressed(_ sender: UIButton) {
@@ -95,7 +103,8 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
         self.albumArtImageView.image = self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: self.albumArtImageView.frame.size.width, height: self.albumArtImageView.frame.size.height))
         self.artistAlbumLabel.text = self.musicLibrary.player.nowPlayingItem?.artist
         self.songNameLabel.text = self.musicLibrary.player.nowPlayingItem?.title
-
+        DispatchQueue.main.async {
+            
         self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: 75, height: 50))?.getColors{ colors in
             UIView.animate(withDuration: 0.15, animations: {
                 self.skipBackButton.tintColor = colors.primaryColor
@@ -106,13 +115,14 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
                 self.view.backgroundColor = colors.backgroundColor
             }, completion: nil)
         }
-
+        }
+            
     }
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         
         musicLibrary.player.setQueue(with: mediaItemCollection)
-//        musicLibrary.player.play()
+        musicLibrary.player.play()
         self.dismiss(animated: true, completion: nil)
     }
     func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
