@@ -87,18 +87,18 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
         }
     }
     @IBAction func skipForwardButtonPressed(_ sender: UIButton) {
-        if musicLibrary.player.playbackState == .seekingForward || musicLibrary.player.playbackState == .seekingBackward{
-            musicLibrary.player.endSeeking()
+       // if musicLibrary.player.playbackState == .seekingForward || musicLibrary.player.playbackState == .seekingBackward{
+            //musicLibrary.player.endSeeking()
 
-        }else{
+        //}else{
             musicLibrary.player.skipToNextItem()
-        }
+        //}
         
 
     }
     @IBAction func skipForwardButtonHeld(_ sender: UIButton) {
         
-        musicLibrary.player.beginSeekingForward()
+        //musicLibrary.player.beginSeekingForward()
         
     }
     
@@ -107,9 +107,7 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
     }
     
     func updateView(){
-        self.albumArtImageView.image = self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: self.albumArtImageView.frame.size.width, height: self.albumArtImageView.frame.size.height))
-        self.artistAlbumLabel.text = self.musicLibrary.player.nowPlayingItem?.artist
-        self.songNameLabel.text = self.musicLibrary.player.nowPlayingItem?.title
+        
         DispatchQueue.main.async {
             
         self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: 75, height: 50))?.getColors{ colors in
@@ -120,7 +118,12 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
                 self.artistAlbumLabel.textColor = colors.secondaryColor
                 self.songNameLabel.textColor = colors.detailColor
                 self.view.backgroundColor = colors.backgroundColor
-            }, completion: nil)
+            }, completion: {(success: Bool) in
+                self.albumArtImageView.image = self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: self.albumArtImageView.frame.size.width, height: self.albumArtImageView.frame.size.height))
+                self.artistAlbumLabel.text = self.musicLibrary.player.nowPlayingItem?.artist
+                self.songNameLabel.text = self.musicLibrary.player.nowPlayingItem?.title
+            
+            })
         }
         }
             
