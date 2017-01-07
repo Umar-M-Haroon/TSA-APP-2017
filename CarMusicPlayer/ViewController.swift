@@ -24,22 +24,19 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
     
     
     @IBAction func testVCpresent(_ sender: UIButton) {
+        
+        // Creates an instance of MPMediaPickerController and present it
+        
         let musicPickerController = MPMediaPickerController()
         musicPickerController.delegate = self
         musicPickerController.allowsPickingMultipleItems = true
         
         self.present(musicPickerController, animated: true, completion: nil)
         
-        
-        
     }
     override func viewDidAppear(_ animated: Bool) {
-
+        //Make it so the app knows when the user pauses/plays and when the song changes
         musicLibrary.player.beginGeneratingPlaybackNotifications()
-        
-        
-        
-        
         NotificationCenter.default.addObserver(self, selector:#selector(updateView), name:.MPMusicPlayerControllerNowPlayingItemDidChange, object:musicLibrary.player)
         NotificationCenter.default.addObserver(self, selector:#selector(changePlayPauseButtonImage), name: .MPMusicPlayerControllerPlaybackStateDidChange, object:musicLibrary.player)
 
@@ -80,7 +77,7 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
         feedback?.notificationOccurred(UINotificationFeedbackType.success)
         feedback = nil
         
-        DispatchQueue.main.async{ // 2
+        DispatchQueue.main.async{
         
             if (self.musicLibrary.player.playbackState.rawValue == 1){
                 self.musicLibrary.player.pause()
@@ -90,9 +87,19 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
         }
     }
     @IBAction func skipForwardButtonPressed(_ sender: UIButton) {
-        
-        musicLibrary.player.skipToNextItem()
+        if musicLibrary.player.playbackState == .seekingForward || musicLibrary.player.playbackState == .seekingBackward{
+            musicLibrary.player.endSeeking()
 
+        }else{
+            musicLibrary.player.skipToNextItem()
+        }
+        
+
+    }
+    @IBAction func skipForwardButtonHeld(_ sender: UIButton) {
+        
+        musicLibrary.player.beginSeekingForward()
+        
     }
     
     @IBAction func skipBackButtonPressed(_ sender: UIButton) {
@@ -106,7 +113,7 @@ class ViewController: UIViewController,MPMediaPickerControllerDelegate{
         DispatchQueue.main.async {
             
         self.musicLibrary.player.nowPlayingItem?.artwork?.image(at:CGSize.init(width: 75, height: 50))?.getColors{ colors in
-            UIView.animate(withDuration: 0.15, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.skipBackButton.tintColor = colors.primaryColor
                 self.playPauseButton.tintColor = colors.primaryColor
                 self.skipForwardButton.tintColor = colors.primaryColor

@@ -107,6 +107,7 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="SkipForwardImage"/>
                                         <connections>
+                                            <action selector="skipForwardButtonHeld:" destination="BYZ-38-t0r" eventType="touchDown" id="xL9-mc-gBo"/>
                                             <action selector="skipForwardButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sCd-Fq-GML"/>
                                         </connections>
                                     </button>
